@@ -4,9 +4,9 @@
   version: master
   name: jsnshrmn.centos7
 # fetch jsnshrmn.d7 from github
-- src: https://github.com/OULibraries/ansible-role-d7
+- src: https://github.com/OULibraries/ansible-role-dspace
   version: master
-  name: jsnshrmn.d7
+  name: lo5an.dspace
 # fetch jsnshrmn.ngrok from github
 - src: https://github.com/OULibraries/ansible-role-ngrok
   version: master
