@@ -1,14 +1,27 @@
 ---
-# fetch jsnshrmn.centos7 from github
+
 - src: https://github.com/OULibraries/ansible-role-centos7
-  version: master
-  name: jsnshrmn.centos7
-# fetch lo5an.dspace from github
-- src: https://github.com/OULibraries/ansible-role-postgresql-server
-  version: master
   scm: git
-  name: oulibraries.postgresql-server
-# fetch jsnshrmn.ngrok from github
-- src: https://github.com/OULibraries/ansible-role-ngrok
   version: master
-  name: jsnshrmn.ngrok
+  name: OULibraries.centos7
+
+- src: https://github.com/OULibraries/ansible-role-postgresql-server
+  scm: git
+  version: master
+  name: OULibraries.postgresql-server
+
+- src: https://github.com/OULibraries/ansible-role-dspace
+  scm: git
+  version: master
+  name: OULibraries.dspace
+
+- src: https://github.com/OULibraries/ansible-role-lastpass-cli
+  scm: git
+  version: master
+  name: OULibraries.lastpass-cli
+  
+- src: https://github.com/OULibraries/ansible-role-lastpass-dspace
+  scm: git
+  version: master
+  name: OULibraries.lastpass-dspace
+

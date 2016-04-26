@@ -7,11 +7,16 @@ Vagrant.configure(2) do |config|
   
   # First, get settings from my-vars.yml
   require 'yaml'
-  myvars = YAML.load_file('my-vars.yml') # TODO should probably error out if my-vars DNE
-  
+  myvarsfile = File.dirname(__FILE__)+'/my-vars.yml'
+  myvars = YAML.load_file(myvarsfile) # TODO should probably error out if my-vars DNE
+
   # Our starting point for CentOS is Jeff Geerling's ansible base box. 
   # https://github.com/geerlingguy/packer-centos-7/
-  config.vm.box = "geerlingguy/centos7" 
+  config.vm.box = "geerlingguy/centos7"
+
+  #SSH stuff 
+  config.ssh.forward_agent = true
+  
 
   # Virtualbox-specific machine configuration
   # config.vm.provider "virtualbox" do |vb|
@@ -24,17 +29,12 @@ Vagrant.configure(2) do |config|
     config.vm.hostname = myvars["httpd_dn_suffix"] || "drupal.vagrant.test"
   end
 
-  # Do control machine tasks first
-  config.vm.provision "ansible_local" do |ansible|
-    ansible.provisioning_path = "/vagrant"
-    ansible.playbook = "control-machine.yml"
-  end
+
 
   ### Application Specific Setup #########
   
-  # Then do d7 stuff
-  config.vm.provision "ansible_local" do |ansible|
-    ansible.provisioning_path = "/vagrant"
+  # Then do DSpace stuff
+  config.vm.provision "ansible" do |ansible|
     ansible.galaxy_role_file = "requirements.yml"
     ansible.playbook = "vagrant.yml"
   end
